@@ -1,0 +1,14 @@
+{
+    "type": {
+        "Map": {
+            "mapKey": "String",
+            "mapValue": "Int32"
+        }
+    },
+    "value": {
+        "red": 5,
+        "green": -10,
+        "": 8,
+        "blue": 0
+    }
+}

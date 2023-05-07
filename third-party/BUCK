@@ -1,0 +1,214 @@
+load("@prelude//rust:cargo_buildscript.bzl", "buildscript_run")
+load("@prelude//rust:cargo_package.bzl", "cargo")
+
+http_archive(
+    name = "itoa-1.0.6.crate",
+    sha256 = "453ad9f582a441959e5f0d088b02ce04cfe8d51a8eaf077f12ac6d3e94164ca6",
+    strip_prefix = "itoa-1.0.6",
+    urls = ["https://crates.io/api/v1/crates/itoa/1.0.6/download"],
+    visibility = [],
+)
+
+cargo.rust_library(
+    name = "itoa-1.0.6",
+    srcs = [":itoa-1.0.6.crate"],
+    crate = "itoa",
+    crate_root = "itoa-1.0.6.crate/src/lib.rs",
+    edition = "2018",
+    visibility = [],
+)
+
+http_archive(
+    name = "proc-macro2-1.0.56.crate",
+    sha256 = "2b63bdb0cd06f1f4dedf69b254734f9b45af66e4a031e42a7480257d9898b435",
+    strip_prefix = "proc-macro2-1.0.56",
+    urls = ["https://crates.io/api/v1/crates/proc-macro2/1.0.56/download"],
+    visibility = [],
+)
+
+cargo.rust_library(
+    name = "proc-macro2-1.0.56",
+    srcs = [":proc-macro2-1.0.56.crate"],
+    crate = "proc_macro2",
+    crate_root = "proc-macro2-1.0.56.crate/src/lib.rs",
+    edition = "2018",
+    features = [
+        "default",
+        "proc-macro",
+    ],
+    visibility = [],
+    deps = [":unicode-ident-1.0.8"],
+)
+
+http_archive(
+    name = "quote-1.0.26.crate",
+    sha256 = "4424af4bf778aae2051a77b60283332f386554255d722233d09fbfc7e30da2fc",
+    strip_prefix = "quote-1.0.26",
+    urls = ["https://crates.io/api/v1/crates/quote/1.0.26/download"],
+    visibility = [],
+)
+
+cargo.rust_library(
+    name = "quote-1.0.26",
+    srcs = [":quote-1.0.26.crate"],
+    crate = "quote",
+    crate_root = "quote-1.0.26.crate/src/lib.rs",
+    edition = "2018",
+    features = [
+        "default",
+        "proc-macro",
+    ],
+    visibility = [],
+    deps = [":proc-macro2-1.0.56"],
+)
+
+http_archive(
+    name = "ryu-1.0.13.crate",
+    sha256 = "f91339c0467de62360649f8d3e185ca8de4224ff281f66000de5eb2a77a79041",
+    strip_prefix = "ryu-1.0.13",
+    urls = ["https://crates.io/api/v1/crates/ryu/1.0.13/download"],
+    visibility = [],
+)
+
+cargo.rust_library(
+    name = "ryu-1.0.13",
+    srcs = [":ryu-1.0.13.crate"],
+    crate = "ryu",
+    crate_root = "ryu-1.0.13.crate/src/lib.rs",
+    edition = "2018",
+    visibility = [],
+)
+
+alias(
+    name = "serde",
+    actual = ":serde-1.0.162",
+    visibility = ["PUBLIC"],
+)
+
+http_archive(
+    name = "serde-1.0.162.crate",
+    sha256 = "71b2f6e1ab5c2b98c05f0f35b236b22e8df7ead6ffbf51d7808da7f8817e7ab6",
+    strip_prefix = "serde-1.0.162",
+    urls = ["https://crates.io/api/v1/crates/serde/1.0.162/download"],
+    visibility = [],
+)
+
+cargo.rust_library(
+    name = "serde-1.0.162",
+    srcs = [":serde-1.0.162.crate"],
+    crate = "serde",
+    crate_root = "serde-1.0.162.crate/src/lib.rs",
+    edition = "2015",
+    features = [
+        "default",
+        "derive",
+        "serde_derive",
+        "std",
+    ],
+    visibility = [],
+    deps = [":serde_derive-1.0.162"],
+)
+
+http_archive(
+    name = "serde_derive-1.0.162.crate",
+    sha256 = "a2a0814352fd64b58489904a44ea8d90cb1a91dcb6b4f5ebabc32c8318e93cb6",
+    strip_prefix = "serde_derive-1.0.162",
+    urls = ["https://crates.io/api/v1/crates/serde_derive/1.0.162/download"],
+    visibility = [],
+)
+
+cargo.rust_library(
+    name = "serde_derive-1.0.162",
+    srcs = [":serde_derive-1.0.162.crate"],
+    crate = "serde_derive",
+    crate_root = "serde_derive-1.0.162.crate/src/lib.rs",
+    edition = "2015",
+    features = ["default"],
+    proc_macro = True,
+    visibility = [],
+    deps = [
+        ":proc-macro2-1.0.56",
+        ":quote-1.0.26",
+        ":syn-2.0.15",
+    ],
+)
+
+alias(
+    name = "serde_json",
+    actual = ":serde_json-1.0.96",
+    visibility = ["PUBLIC"],
+)
+
+http_archive(
+    name = "serde_json-1.0.96.crate",
+    sha256 = "057d394a50403bcac12672b2b18fb387ab6d289d957dab67dd201875391e52f1",
+    strip_prefix = "serde_json-1.0.96",
+    urls = ["https://crates.io/api/v1/crates/serde_json/1.0.96/download"],
+    visibility = [],
+)
+
+cargo.rust_library(
+    name = "serde_json-1.0.96",
+    srcs = [":serde_json-1.0.96.crate"],
+    crate = "serde_json",
+    crate_root = "serde_json-1.0.96.crate/src/lib.rs",
+    edition = "2018",
+    features = [
+        "default",
+        "std",
+    ],
+    visibility = [],
+    deps = [
+        ":itoa-1.0.6",
+        ":ryu-1.0.13",
+        ":serde-1.0.162",
+    ],
+)
+
+http_archive(
+    name = "syn-2.0.15.crate",
+    sha256 = "a34fcf3e8b60f57e6a14301a2e916d323af98b0ea63c599441eec8558660c822",
+    strip_prefix = "syn-2.0.15",
+    urls = ["https://crates.io/api/v1/crates/syn/2.0.15/download"],
+    visibility = [],
+)
+
+cargo.rust_library(
+    name = "syn-2.0.15",
+    srcs = [":syn-2.0.15.crate"],
+    crate = "syn",
+    crate_root = "syn-2.0.15.crate/src/lib.rs",
+    edition = "2021",
+    features = [
+        "clone-impls",
+        "default",
+        "derive",
+        "parsing",
+        "printing",
+        "proc-macro",
+        "quote",
+    ],
+    visibility = [],
+    deps = [
+        ":proc-macro2-1.0.56",
+        ":quote-1.0.26",
+        ":unicode-ident-1.0.8",
+    ],
+)
+
+http_archive(
+    name = "unicode-ident-1.0.8.crate",
+    sha256 = "e5464a87b239f13a63a501f2701565754bae92d243d4bb7eb12f6d57d2269bf4",
+    strip_prefix = "unicode-ident-1.0.8",
+    urls = ["https://crates.io/api/v1/crates/unicode-ident/1.0.8/download"],
+    visibility = [],
+)
+
+cargo.rust_library(
+    name = "unicode-ident-1.0.8",
+    srcs = [":unicode-ident-1.0.8.crate"],
+    crate = "unicode_ident",
+    crate_root = "unicode-ident-1.0.8.crate/src/lib.rs",
+    edition = "2018",
+    visibility = [],
+)
