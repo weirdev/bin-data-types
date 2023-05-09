@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "bstring.h"
+#include "bstring.hpp"
 
 extern "C" {
 // Forward declare from rust
