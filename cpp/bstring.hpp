@@ -1,5 +1,4 @@
 #include <string_view>
-#include <cstring>
 
 struct BString {
     char data[16];
@@ -22,7 +21,7 @@ struct BString {
         }
 
         std::string_view to_cpp();
-    
+
     private:
         void freeData();
 };

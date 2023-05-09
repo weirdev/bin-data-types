@@ -6,7 +6,7 @@ BString::BString() {
 }
 
 BString::BString(std::string_view str) {
-    auto dataPtr = (char*)malloc(str.size());
+    auto dataPtr = new char[str.size()];
     memcpy(dataPtr, str.data(), str.size());
 
     *(char**)&data[0] = dataPtr;
@@ -42,5 +42,5 @@ std::string_view BString::to_cpp() {
 
 void BString::freeData() {
     auto dataPtr = *(char**)&data[0];
-    if (dataPtr != nullptr) free(dataPtr);
+    if (dataPtr != nullptr) delete dataPtr;
 }
