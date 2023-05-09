@@ -20,7 +20,7 @@ struct BString {
             freeData();
         }
 
-        std::string_view to_cpp();
+        std::string_view to_cpp() const;
 
     private:
         void freeData();

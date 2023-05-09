@@ -66,6 +66,10 @@ struct BList {
             freeData();
         }
 
+        BListIt<const T> to_cpp() const {
+            return BListIt<const T>{*(T**)(&data[0]), *(size_t*)(&data[8])};
+        }
+
         BListIt<T> to_cpp() {
             return BListIt<T>{*(T**)(&data[0]), *(size_t*)(&data[8])};
         }

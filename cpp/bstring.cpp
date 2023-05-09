@@ -33,7 +33,7 @@ BString& BString::operator=(BString&& other) {
     return *this;
 }
 
-std::string_view BString::to_cpp() {
+std::string_view BString::to_cpp() const {
     auto dataPtr = *(char**)&data[0];
     auto count = *(size_t*)(&data[8]);
 
